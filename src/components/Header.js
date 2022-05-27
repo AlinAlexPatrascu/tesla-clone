@@ -1,13 +1,13 @@
-import React, {useState} from 'react'
-import styled from 'styled-components'
-import MenuIcon from '@material-ui/icons/Menu'
-import CloseIcon from '@material-ui/icons/Close'
-import  { selectCars } from '../features/car/carSlice'
-import { useSelector } from 'react-redux'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
+import { selectCars } from '../features/car/carSlice';
+import { useSelector } from 'react-redux';
 
 function Header() {
-  const [burgerStatus, setBurgerStatus] = useState(false)
-  const cars = useSelector(selectCars)
+  const [burgerStatus, setBurgerStatus] = useState(false);
+  const cars = useSelector(selectCars);
 
   return (
     <Container>
@@ -15,35 +15,55 @@ function Header() {
         <img src="/images/logo.svg" />
       </a>
       <Menu>
-        {cars && cars.map((car, index) =>
-          <a key={index} href="#">{car}</a>
-        )}
+        {cars &&
+          cars.map((car, index) => (
+            <a key={index} href="#">
+              {car}
+            </a>
+          ))}
       </Menu>
       <RightMenu>
         <a href="#">Shop</a>
         <a href="#">Tesla Account</a>
-        <CustomMenu onClick={() => setBurgerStatus(true)}/>
+        <CustomMenu onClick={() => setBurgerStatus(true)} />
       </RightMenu>
       <BurgerNav show={burgerStatus}>
         <CloseWrapper>
-          <CustomClose onClick={() => setBurgerStatus(false)}/>
+          <CustomClose onClick={() => setBurgerStatus(false)} />
         </CloseWrapper>
-        {cars && cars.map((car, index) =>
-          <li key={index}><a href='#'>{car}</a></li>
-        )}
-        <li><a href='#'>Existing Inventory</a></li>
-        <li><a href='#'>Used Inventory</a></li>
-        <li><a href='#'>Trade-in</a></li>
-        <li><a href='#'>Cybertruck</a></li>
-        <li><a href='#'>Roadster</a></li>
-        <li><a href='#'>Semi</a></li>
-        <li><a href='#'>Charging</a></li>
+        {cars &&
+          cars.map((car, index) => (
+            <li key={index}>
+              <a href="#">{car}</a>
+            </li>
+          ))}
+        <li>
+          <a href="#">Existing Inventory</a>
+        </li>
+        <li>
+          <a href="#">Used Inventory</a>
+        </li>
+        <li>
+          <a href="#">Trade-in</a>
+        </li>
+        <li>
+          <a href="#">Cybertruck</a>
+        </li>
+        <li>
+          <a href="#">Roadster</a>
+        </li>
+        <li>
+          <a href="#">Semi</a>
+        </li>
+        <li>
+          <a href="#">Charging</a>
+        </li>
       </BurgerNav>
     </Container>
-  )
+  );
 }
 
-export default Header
+export default Header;
 
 const Container = styled.div`
   min-height: 60px;
@@ -56,9 +76,9 @@ const Container = styled.div`
   left: 0;
   right: 0;
   z-index: 1;
-`
+`;
 const Menu = styled.div`
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   flex: 1;
@@ -73,7 +93,7 @@ const Menu = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
-`
+`;
 const RightMenu = styled.div`
   display: flex;
   align-items: center;
@@ -82,11 +102,11 @@ const RightMenu = styled.div`
     text-transform: uppercase;
     margin-right: 10px;
   }
-`
+`;
 
 const CustomMenu = styled(MenuIcon)`
   cursor: pointer;
-`
+`;
 
 const BurgerNav = styled.div`
   position: fixed;
@@ -101,7 +121,7 @@ const BurgerNav = styled.div`
   display: flex;
   flex-direction: column;
   text-align: start;
-  transform: ${props => props.show ? 'translateX(0)' : 'translateX(100%)'};
+  transform: ${(props) => (props.show ? 'translateX(0)' : 'translateX(100%)')};
   transition: transform 0.2s;
   li {
     padding: 15px;
@@ -110,13 +130,11 @@ const BurgerNav = styled.div`
       font-weight: 600;
     }
   }
-`
+`;
 
-const CustomClose = styled(CloseIcon)`
-  
-`
+const CustomClose = styled(CloseIcon)``;
 const CloseWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
-`
+`;
